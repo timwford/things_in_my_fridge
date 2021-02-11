@@ -5,7 +5,6 @@ FROM python:3.8
 WORKDIR /code
 
 # copy the dependencies file to the working directory
-CMD ["ls"]
 COPY requirements.txt .
 
 # install dependencies
