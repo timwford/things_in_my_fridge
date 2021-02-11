@@ -38,11 +38,11 @@ async def get_all_food(active: bool = False):
 
 @app.put("/food/", response_model=Food)
 async def create_food(food: Food):
-    if food.id is None:
+    db_food = await engine.find_one(Food, Food.id == food.id)
+    if db_food is None:
         await engine.save(food)
         return food
     else:
-        db_food = await engine.find_one(Food, Food.id == food.id)
         for object_field, _ in vars(food).items():
             if object_field != "id":
                 new = getattr(food, object_field)
