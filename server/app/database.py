@@ -5,8 +5,8 @@ from pprint import pprint
 from motor.motor_asyncio import AsyncIOMotorClient
 from odmantic import AIOEngine
 
-from app.app import Food
-from app import DATABASE_URL, DATABASE_PORT, DATABASE_NAME
+from server.app import Food
+from server.app import DATABASE_URL, DATABASE_PORT, DATABASE_NAME
 
 instances: list[Food] = [
     Food(name="Veggie soup", expire_days=3, created=int(time.time()), active=True),
