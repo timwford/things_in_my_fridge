@@ -7,7 +7,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 
 from odmantic import AIOEngine, Field, Model, ObjectId
 
-from server.app.config import DATABASE_URL, DATABASE_PORT, DATABASE_NAME, AutoNameEnum
+from app import DATABASE_URL, DATABASE_PORT, DATABASE_NAME, AutoNameEnum
 
 FoodType = AutoNameEnum('FoodType', 'MEAL INGREDIENT')
 
