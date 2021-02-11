@@ -1,4 +1,4 @@
-# et base image (host OS)
+# set base image (host OS)
 FROM python:3.8
 
 # set the working directory in the container
@@ -10,5 +10,7 @@ COPY requirements.txt .
 # install dependencies
 RUN pip install -r requirements.txt
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+# copy the content of the local src directory to the working directory
+COPY app/ .
 
+CMD [ "python", "./app.py" ]

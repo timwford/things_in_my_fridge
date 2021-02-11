@@ -5,13 +5,7 @@ from pprint import pprint
 from motor.motor_asyncio import AsyncIOMotorClient
 from odmantic import AIOEngine
 
-from server.app import Food
-from server.app import DATABASE_URL, DATABASE_PORT, DATABASE_NAME
-
-instances: list[Food] = [
-    Food(name="Veggie soup", expire_days=3, created=int(time.time()), active=True),
-    Food(name="Hummus", expire_days=4, created=int(time.time()), active=True)
-]
+from config import DATABASE_URL, DATABASE_PORT, DATABASE_NAME
 
 
 async def make_instances():
