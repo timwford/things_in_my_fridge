@@ -15,23 +15,39 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 
-                LazyVStack {
-                    ForEach(foodModel.in_the_fridge) { food in
-                        FoodView(food: food).padding([.horizontal, .top])
-                    }
-                }.sheet(isPresented: $isPuttingFoodInFridge, onDismiss: {
-                    foodModel.load()
-                }, content: {
-                    CreateFoodView()
+                Button(action: {
+                    isPuttingFoodInFridge = true
+                }, label: {
+                    Text("~~🐲~~").font(.largeTitle).shadow(radius: 8).padding(8)
                 })
                 
-            }.navigationBarItems(trailing: Button(action: {
-                isPuttingFoodInFridge = true
-            }, label: {
-                Text("🐲").font(.title2).padding(8).background(RoundedRectangle(cornerRadius: 12).foregroundColor(.black).shadow(radius: 8))
-            })).navigationBarTitle("In the fridge...").navigationBarTitleDisplayMode(.large)
+                Text("Fridge").bold().font(.largeTitle)
+                
+                VStack {
+                    NavigationLink(destination: CreateFoodView(isPresented: $isPuttingFoodInFridge), isActive: $isPuttingFoodInFridge, label: {
+                        EmptyView()
+                    })
+                    
+                    ForEach(foodModel.in_the_fridge) { food in
+                        if !food.freezer {
+                            FoodSeparatorView(color: FoodView.getColorForSpoiled(food))
+                            FoodView(food: food)
+                        }
+                    }
+                }
+                
+                Text("Freezer").bold().font(.largeTitle).padding(.top)
+                
+                VStack {
+                    ForEach(foodModel.in_the_fridge) { food in
+                        if food.freezer {
+                            FoodView(food: food)
+                        }
+                    }
+                }
+            }.padding([.horizontal], 8).navigationBarTitle("Food Stuffs").navigationBarTitleDisplayMode(.large)
         }
     }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A249843A25D603CA00946D91 /* TimeDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A249843925D603CA00946D91 /* TimeDividerView.swift */; };
+		A249843F25D6077100946D91 /* FoodSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A249843E25D6077100946D91 /* FoodSeparatorView.swift */; };
 		A29D37D325D4E0460034F045 /* CreateFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D37D225D4E0450034F045 /* CreateFoodView.swift */; };
 		A2E4D31425D4D24400FE5361 /* FridgeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E4D31325D4D24400FE5361 /* FridgeApp.swift */; };
 		A2E4D31625D4D24400FE5361 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E4D31525D4D24400FE5361 /* ContentView.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A249843925D603CA00946D91 /* TimeDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDividerView.swift; sourceTree = "<group>"; };
+		A249843E25D6077100946D91 /* FoodSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSeparatorView.swift; sourceTree = "<group>"; };
 		A29D37D225D4E0450034F045 /* CreateFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFoodView.swift; sourceTree = "<group>"; };
 		A2E4D31025D4D24400FE5361 /* Things In My Fridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Things In My Fridge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2E4D31325D4D24400FE5361 /* FridgeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeApp.swift; sourceTree = "<group>"; };
@@ -111,6 +115,8 @@
 				A2E4D31925D4D24500FE5361 /* Preview Content */,
 				A2E4D35825D4D7F500FE5361 /* FoodView.swift */,
 				A29D37D225D4E0450034F045 /* CreateFoodView.swift */,
+				A249843925D603CA00946D91 /* TimeDividerView.swift */,
+				A249843E25D6077100946D91 /* FoodSeparatorView.swift */,
 			);
 			path = "Things In My Fridge";
 			sourceTree = "<group>";
@@ -283,7 +289,9 @@
 				A2E4D35925D4D7F500FE5361 /* FoodView.swift in Sources */,
 				A29D37D325D4E0460034F045 /* CreateFoodView.swift in Sources */,
 				A2E4D31625D4D24400FE5361 /* ContentView.swift in Sources */,
+				A249843A25D603CA00946D91 /* TimeDividerView.swift in Sources */,
 				A2E4D31425D4D24400FE5361 /* FridgeApp.swift in Sources */,
+				A249843F25D6077100946D91 /* FoodSeparatorView.swift in Sources */,
 				A2E4D35125D4D36D00FE5361 /* FoodModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

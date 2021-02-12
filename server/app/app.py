@@ -18,6 +18,7 @@ class Food(Model, ABC):
     created: int
     active: bool
     food_type: Optional[str]
+    freezer: Optional[bool] = False
 
 
 app = FastAPI()

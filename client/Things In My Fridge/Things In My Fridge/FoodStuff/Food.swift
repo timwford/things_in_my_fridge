@@ -8,6 +8,7 @@ struct Food: Codable, Equatable, Identifiable {
     var expireDays, created: Int
     var active: Bool
     var foodType: String?
+    var freezer: Bool
     var id: String?
 
     enum CodingKeys: String, CodingKey {
@@ -15,6 +16,7 @@ struct Food: Codable, Equatable, Identifiable {
         case expireDays = "expire_days"
         case created, active
         case foodType = "food_type"
+        case freezer
         case id
     }
 }

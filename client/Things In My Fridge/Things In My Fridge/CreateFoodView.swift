@@ -12,51 +12,66 @@ struct CreateFoodView: View {
     @ObservedObject var foodModel = FoodModel.shared
     
     static var mealTypes = ["meal", "ingredient"]
+    static var storageTypes = ["fridge", "freezer"]
     
     @State var foodName: String = ""
     @State var foodExpire: Int = 3
     @State var foodType: String = CreateFoodView.mealTypes[0]
+    @State var storageType: String = CreateFoodView.storageTypes[0]
+    
+    @Binding var isPresented: Bool
     
     var body: some View {
-        ScrollView {
-            VStack {
-                Text("Going in the fridge is...").bold().font(.title)
-                TextField("Food...", text: $foodName).font(.title2).padding(.horizontal, 32)
-                
-                Text("How long does it last?").bold().font(.title)
-                HStack {
-                    Text("-").font(.largeTitle).bold().shadow(radius: 4).onTapGesture {
-                        if (foodExpire > 0) {
-                            foodExpire -= 1
+        Form {
+            Text("Going in the fridge is:").bold().font(.title)
+            TextField("This kind of food...", text: $foodName).font(.title2)
+            
+            Section(header: Text("Storage")) {
+                VStack {
+                    Picker("Stored in ", selection: $storageType, content: {
+                        ForEach(CreateFoodView.storageTypes, id: \.self) {
+                            Text($0)
                         }
-                    }.padding(.horizontal)
-                    Text("\(foodExpire) days").font(.largeTitle).bold().padding(.horizontal)
-                    Text("+").font(.largeTitle).bold().shadow(radius: 4).onTapGesture {
-                        foodExpire += 1
-                    }.padding(.horizontal)
-                }.padding(.top)
+                    }).pickerStyle(SegmentedPickerStyle())
+                }
                 
-                Picker("Type of food", selection: $foodType, content: {
+                if storageType != "freezer" {
+                    Text("How long does it last?").bold().font(.title)
+                    
+                    HStack(alignment: .center) {
+                        Spacer()
+                        
+                        Text("-").font(.largeTitle).bold().shadow(radius: 4).onTapGesture {
+                            if (foodExpire > 0) {
+                                foodExpire -= 1
+                            }
+                        }.padding(.horizontal)
+                        Text("\(foodExpire) days").font(.title2).bold().padding(.horizontal)
+                        Text("+").font(.largeTitle).bold().shadow(radius: 4).onTapGesture {
+                            foodExpire += 1
+                        }.padding(.horizontal)
+                        
+                        Spacer()
+                    }
+                }
+            }
+            
+            Section(header: Text("Type")) {
+                Picker(selection: $foodType, label: Text("Type of Food")) {
                     ForEach(CreateFoodView.mealTypes, id: \.self) {
                         Text($0)
                     }
-                })
-                
-                Button("Create", action: {
-                    foodModel.update(schema: Food(name: foodName, expireDays: foodExpire, created: Int(NSDate().timeIntervalSince1970), active: true, foodType: foodType))
-                })
-                
-                Spacer()
-            }.padding(.top).onTapGesture {
-                self.hideKeyboard()
+                }.pickerStyle(SegmentedPickerStyle())
             }
+        }.navigationBarItems(trailing: Button(action: {
+            foodModel.update(schema: Food(name: foodName, expireDays: foodExpire, created: Int(NSDate().timeIntervalSince1970), active: true, foodType: foodType, freezer: storageType == "freezer" ? true : false))
+            
+            self.isPresented = false
+        }, label: {
+            Text("Add").bold()
+        })).navigationBarTitle("New Food!").navigationBarTitleDisplayMode(.large).onTapGesture {
+            self.hideKeyboard()
         }
-    }
-}
-
-struct CreateFoodView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateFoodView()
     }
 }
 

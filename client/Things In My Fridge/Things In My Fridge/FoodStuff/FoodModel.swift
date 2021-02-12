@@ -9,7 +9,7 @@ import Foundation
 
 class FoodModel : ObservableObject {
     
-    static let urlStr = "http://209.159.204.189:4000/food/"
+    static let urlStr = "http://209.159.204.189:8000/food/"
     
     let url = URL(string: FoodModel.urlStr)!
     let all_url = URL(string: "\(FoodModel.urlStr)?active=true")!
