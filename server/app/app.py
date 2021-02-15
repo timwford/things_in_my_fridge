@@ -19,6 +19,8 @@ class Food(Model, ABC):
     active: bool
     food_type: Optional[str]
     freezer: Optional[bool] = False
+    pantry: Optional[bool] = False
+    shopping_list: Optional[bool] = False
 
 
 app = FastAPI()
@@ -37,9 +39,17 @@ async def get_all_food(active: bool = False):
     return results
 
 
+@app.get("/shopping/", response_model=List[Food])
+async def get_shopping_list():
+    results = await engine.find(Food, Food.shopping_list == True, sort=Food.expire_days)
+
+    return results
+
+
 @app.put("/food/", response_model=Food)
 async def create_food(food: Food):
     db_food = await engine.find_one(Food, Food.id == food.id)
+
     if db_food is None:
         await engine.save(food)
         return food
@@ -51,6 +61,7 @@ async def create_food(food: Food):
 
         await engine.save(db_food)
         return db_food
+
 
 @app.delete("/food/{id}", response_model=Food)
 async def delete_food_by_id(id: ObjectId):
